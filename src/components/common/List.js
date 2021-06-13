@@ -1,7 +1,7 @@
 import React from 'react'
 import { arrayOf, any, node, func } from 'prop-types'
 
-export const List = ({ data = [], empty, iteratee }) => {
+export const List = ({ data = [], empty = null, iteratee }) => {
   const isEmpty = Array.isArray(data) && data.length === 0
 
   return isEmpty ? empty : <ul>{data.map(iteratee)}</ul>

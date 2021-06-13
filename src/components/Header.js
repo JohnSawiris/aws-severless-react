@@ -1,4 +1,7 @@
 import React from 'react'
+import { List } from './common'
+
+import menuLinksData from './data/menu_links.json'
 
 export const Header = () => {
   return (
@@ -25,33 +28,16 @@ export const Header = () => {
               Landon <span>Hotel</span>
             </a>
           </div>
-          <ul>
-            <li>
-              <a className="icon info" href="#hotelinfo">
-                <span>info</span>
-              </a>
-            </li>
-            <li>
-              <a className="icon rooms" href="#rooms">
-                <span>rooms</span>
-              </a>
-            </li>
-            <li>
-              <a className="icon dining" href="#dining">
-                <span>dining</span>
-              </a>
-            </li>
-            <li>
-              <a className="icon events" href="#events">
-                <span>events</span>
-              </a>
-            </li>
-            <li>
-              <a className="icon attractions" href="#attractions">
-                <span>attractions</span>
-              </a>
-            </li>
-          </ul>
+          <List
+            data={menuLinksData}
+            iteratee={({ className, href, text }) => (
+              <List.Item key={`${href}_${text}`}>
+                <a className={`icon ${className}`} href={href}>
+                  <span>{text}</span>
+                </a>
+              </List.Item>
+            )}
+          />
         </div>
       </nav>
     </header>

@@ -1,7 +1,9 @@
 import React from 'react'
 import { Section, List } from './common'
+import services from './data/services.json'
+import accessibility from './data/accessibility.json'
 
-const arrivalInfo = {
+const arrivalInfo = Object.entries({
   'Check-in': '3:00 PM',
   'Check-out': '11:00 AM',
   Parking:
@@ -11,41 +13,7 @@ const arrivalInfo = {
   Trains: 'The nearest Underground station is at Leicester Square.',
   'Pet Policy':
     'Pets of all sizes and types are allowed in designated pet rooms, and the specified common areas. Service animals are allowed everywhere.',
-}
-
-const servicesAndAmenities = [
-  'Indoor pool',
-  '24-hour fitness center',
-  'Massage therapy',
-  'Full service spa',
-  'In-room jacuzzi tubs',
-  'Rooftop café &amp; smoothie bar',
-  'Coffee bar &amp; pastry shop',
-  'Traditional continental breakfast',
-  '24-hour concierge service',
-  'Business center',
-  'Complimentary wireless service',
-  'Laundry &amp; dry cleaning service',
-  'Daily paper',
-  'Certified "green" hotel',
-  'Pet-friendly rooms &amp; common areas',
-]
-
-const accessibility = [
-  'Grab bars on tub walls',
-  'Shower chairs',
-  'Hand held shower sprayers',
-  'Higher toilets &amp; toilet modifiers',
-  'Lower sink faucet handles',
-  'Wheelchair clearance under sinks &amp; vanity',
-  'Lower racks in closet',
-  'TDD machines',
-  'Telephone light signalers &amp; smoke alarms',
-  'Telephone amplification handsets',
-  'Closed captioned television converters',
-  'Vibrating alarm clocks',
-  'Telephones with volume control',
-]
+})
 
 export const HotelInfo = () => {
   return (
@@ -56,8 +24,7 @@ export const HotelInfo = () => {
       <article id="usefulinfo">
         <Section title="Arrival Information" id="arrivalinfo">
           <List
-            data={Object.entries(arrivalInfo)}
-            empty={null}
+            data={arrivalInfo}
             iteratee={([key, value]) => (
               <List.Item key={`${key}}}`}>
                 <strong>{key}: </strong>
@@ -74,10 +41,9 @@ export const HotelInfo = () => {
           id="services"
         >
           <List
-            data={servicesAndAmenities}
-            empty={null}
-            iteratee={(item, idx) => (
-              <List.Item key={`${item}_${idx}}`}>{item}</List.Item>
+            data={services}
+            iteratee={({ name }, idx) => (
+              <List.Item key={`${name}_${idx}}`}>{name}</List.Item>
             )}
           />
         </Section>
@@ -91,9 +57,8 @@ export const HotelInfo = () => {
         >
           <List
             data={accessibility}
-            empty={null}
-            iteratee={(item, idx) => (
-              <List.Item key={`${item}_${idx}}`}>{item}</List.Item>
+            iteratee={({ name }, idx) => (
+              <List.Item key={`${name}_${idx}}`}>{name}</List.Item>
             )}
           />
         </Section>
